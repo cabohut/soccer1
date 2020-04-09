@@ -10,7 +10,7 @@ import Foundation
 
 // I think this needs to be 'struct' for Binding to work
 struct GameState {
-    var s: StatType = .none
+    var s: StatType = .fk
     var half: Half = .first
     var halfStartTime: Int = 0
     var team: Team = .us

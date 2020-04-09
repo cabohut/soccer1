@@ -53,7 +53,7 @@ struct GameDetail: View {
             Button(action: {
                 self.showSummary.toggle()
             }) {
-                Text("Show Summary")
+                Text("Show Game Log")
             } .sheet(isPresented: $showSummary) {
                 // .environmentObject is needed becasue the sheet does not
                 // inhirit appData from this view

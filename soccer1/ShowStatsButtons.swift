@@ -24,15 +24,16 @@ struct ShowStatsButtons: View {
             ForEach(buttons, id: \.self) { row in
                 HStack (spacing: 25){
                     ForEach(row, id: \.self) { button in
-                        Button(action: { ()
+                        Button(action: { (self.appData.games[self.gameIndex].stats[button]! += 1)
                             withAnimation {}
                         }) {
                             VStack {
-                                Text(String(self.appData.games[self.gameIndex].log[0].time))
-                                    .font(.caption)
+                                Text(self.appData.games[self.gameIndex].stats[button]?.description ?? "")
+                                    .font(.subheadline)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.yellow)
                                 Text("")
                                 Text(button.rawValue)
-                                    .font(.subheadline)
                                     .fontWeight(.bold)
                             }
                             .frame(width: self.bW(), height: self.bW())
@@ -59,6 +60,7 @@ struct ShowStatsButtonsView_Previews: PreviewProvider {
             ShowStatsButtons(gameIndex: 0)
             .previewDevice(PreviewDevice(rawValue: deviceName))
             .previewDisplayName(deviceName)
+            .environmentObject(AppModel())
         }
     }
 }

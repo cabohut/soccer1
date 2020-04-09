@@ -6,12 +6,13 @@
         "opponent": "LAG",
         "location": "Home",
         "finalScore": "2-1",
-        "log": [{"time": 1,"stat": "Off","team": "Us"},
+        "log": [{"time": 1,"stat": "Offside","team": "Us"},
                   {"time": 5,"stat": "Shot","team": "Us"},
                   {"time": 12,"stat": "Shot","team": "Them"},
-                  {"time": 15,"stat": "Off","team": "Us"},
+                  {"time": 15,"stat": "Offside","team": "Us"},
                   {"time": 39,"stat": "Goal","team": "Us"},
-        ]
+        ],
+        "stats":["Pass",4,"CK",1,"Shot",5,"50/50",12,"PK",1,"Goal",2,"FK",14,"Save",0,"Offside",0]
     },
     {
         "id": 2,
@@ -23,23 +24,25 @@
         "log": [{"time": 2,"stat": "FK","team": "Them"},
                   {"time": 8,"stat": "Shot","team": "Us"},
                   {"time": 17,"stat": "Shot","team": "Us"},
-                  {"time": 35,"stat": "Off","team": "Us"},
+                  {"time": 35,"stat": "Offside","team": "Us"},
                   {"time": 49,"stat": "Goal","team": "Us"},
-        ]
+        ],
+        "stats":["Pass",4,"CK",1,"Shot",5,"50/50",12,"PK",1,"Goal",2,"FK",14,"Save",0,"Offside",0]
     },
 {
-    "id": 3,
-    "gameDate": "3-15-2020",
-    "halfLength": 30,
-    "opponent": "Force",
-    "location": "Home",
-    "finalScore": "1-0",
-    "log": [{"time": 3,"stat": "PK","team": "Them"},
-              {"time": 18,"stat": "CK","team": "Us"},
-              {"time": 27,"stat": "Pass","team": "Them"},
-              {"time": 45,"stat": "CK","team": "Them"},
-              {"time": 59,"stat": "Goal","team": "Us"},
-    ]
+        "id": 3,
+        "gameDate": "3-15-2020",
+        "halfLength": 30,
+        "opponent": "Force",
+        "location": "Home",
+        "finalScore": "1-0",
+        "log": [{"time": 3,"stat": "PK","team": "Them"},
+                  {"time": 18,"stat": "CK","team": "Us"},
+                  {"time": 27,"stat": "Pass","team": "Them"},
+                  {"time": 45,"stat": "CK","team": "Them"},
+                  {"time": 59,"stat": "Goal","team": "Us"},
+        ],
+        "stats":["Pass",4,"CK",1,"Shot",5,"50/50",12,"PK",1,"Goal",2,"FK",14,"Save",0,"Offside",0]
 },
     {
         "id": 4,
@@ -51,9 +54,10 @@
         "log": [{"time": 1,"stat": "Goal","team": "Us"},
                   {"time": 5,"stat": "Shot","team": "Us"},
                   {"time": 12,"stat": "Shot","team": "Them"},
-                  {"time": 15,"stat": "Off","team": "Us"},
+                  {"time": 15,"stat": "Offside","team": "Us"},
                   {"time": 39,"stat": "Goal","team": "Us"},
-        ]
+        ],
+        "stats":["Pass",4,"CK",1,"Shot",5,"50/50",12,"PK",1,"Goal",2,"FK",14,"Save",0,"Offside",0]
     },
     {
         "id": 5,
@@ -65,22 +69,24 @@
         "log": [{"time": 2,"stat": "Goal","team": "Them"},
                   {"time": 8,"stat": "Shot","team": "Us"},
                   {"time": 17,"stat": "Shot","team": "Us"},
-                  {"time": 35,"stat": "Off","team": "Us"},
+                  {"time": 35,"stat": "Offside","team": "Us"},
                   {"time": 49,"stat": "Goal","team": "Us"},
-        ]
+        ],
+        "stats":["Pass",4,"CK",1,"Shot",5,"50/50",12,"PK",1,"Goal",2,"FK",14,"Save",0,"Offside",0]
     },
 {
-    "id": 6,
-    "gameDate": "4-5-2020",
-    "halfLength": 30,
-    "opponent": "Poway",
-    "location": "Home",
-    "finalScore": "1-0",
-    "log": [{"time": 3,"stat": "Shot","team": "Them"},
-              {"time": 18,"stat": "CK","team": "Us"},
-              {"time": 27,"stat": "Pass","team": "Them"},
-              {"time": 45,"stat": "CK","team": "Them"},
-              {"time": 59,"stat": "Goal","team": "Us"},
-    ]
+        "id": 6,
+        "gameDate": "4-5-2020",
+        "halfLength": 30,
+        "opponent": "Poway",
+        "location": "Home",
+        "finalScore": "1-0",
+        "log": [{"time": 3,"stat": "Shot","team": "Them"},
+                  {"time": 18,"stat": "CK","team": "Us"},
+                  {"time": 27,"stat": "Pass","team": "Them"},
+                  {"time": 45,"stat": "CK","team": "Them"},
+                  {"time": 59,"stat": "Goal","team": "Us"},
+        ],
+        "stats":["Pass",4,"CK",1,"Shot",5,"50/50",12,"PK",1,"Goal",2,"FK",14,"Save",0,"Offside",0]
 },
 ]

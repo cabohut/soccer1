@@ -16,7 +16,8 @@ struct Game: Hashable, Codable, Identifiable {
     var opponent: String = ""
     var location: String = ""
     var finalScore: String = ""
-    var log: [StatLog] = []    
+    var log: [StatLog] = []
+    var stats: [StatType : Int] = [ : ]
 }
 
 struct StatLog: Hashable, Codable {
@@ -33,10 +34,9 @@ enum StatType: String, Hashable, CaseIterable, Codable {
     case shot = "Shot"
     case save = "Save"
     case goal = "Goal"
-    case offside = "Off"
+    case offside = "Offside"
     case fifty = "50/50"
     case pass = "Pass"
-    case none = ""
 }
 
 enum Team: String, Hashable, Codable {
