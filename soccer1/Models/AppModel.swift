@@ -40,15 +40,15 @@ func load<T: Decodable>(_ filename: String) -> T {
 
 func printJSON () {
     // use this method to print out the JSON format for the Swift object
-    let games = [Game(id: 1, gameDate: "3/1/20", halfLength: 40, opponent: "Poway", location: "Community", finalScore: "3-0", log: [StatLog(time: 1, stat: .fk, team: .us)], stats: [.fk:0, .shot:1]), Game(id: 2, gameDate: "3/8/20", halfLength: 40, opponent: "La Jolla", location: "Community", finalScore: "2-1", log: [StatLog(time: 3, stat: .ck, team: .us)], stats: [.ck:1, .pass:4])]
+    //let games = [Game(id: 1, gameDate: "3/1/20", halfLength: 40, opponent: "Poway", location: "Community", finalScore: "3-0", log: [StatLog(time: 1, stat: .fk, team: .us)], stats: [.fk:0, .shot:1]), Game(id: 2, gameDate: "3/8/20", halfLength: 40, opponent: "La Jolla", location: "Community", finalScore: "2-1", log: [StatLog(time: 3, stat: .ck, team: .us)], stats: [.ck:1, .pass:4])]
     
-    do {
-        let jsonData = try JSONEncoder().encode(games)
-        let jsonString = String(data: jsonData, encoding: .utf8)!
-        print(jsonString)
-
-        // and decode it back
-        let decodedSentences = try JSONDecoder().decode([Game].self, from: jsonData)
-        print(decodedSentences)
-    } catch { print(error) }
+//    do {
+//        let jsonData = try JSONEncoder().encode(games)
+//        let jsonString = String(data: jsonData, encoding: .utf8)!
+//        print(jsonString)
+//
+//        // and decode it back
+//        let decodedSentences = try JSONDecoder().decode([Game].self, from: jsonData)
+//        print(decodedSentences)
+//    } catch { print(error) }
 }

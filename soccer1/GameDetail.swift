@@ -11,7 +11,8 @@ import SwiftUI
 struct GameDetail: View {
     @EnvironmentObject var appData: AppModel
     
-    @State private var showSummary = false
+    @State private var showLog = false
+    @State private var selectTeam: Team = .us
     
     var game: Game
 
@@ -36,28 +37,38 @@ struct GameDetail: View {
                 }
             }
             
+            // Timer
             Text("35:00")
                 .font(.title)
-            
-            Text(currGame.gameDate)
+
             Spacer()
             
-            Button(action: {self.appData.games[self.gameIndex].gameDate = getDateTime()}) {
-                Text("Update Date")
+            // Test button
+            Button(action: {self.appData.games[self.gameIndex].opponent = "Me"}) {
+                Text("Update Oponent")
             }
             
+            // Stats buttons
             ShowStatsButtons(gameIndex: self.gameIndex)
+             
+            // Us or Them selector
+            Picker("", selection: $appData.gameState.team) {
+                Text("Us").tag(Team.us)
+                Text("Them").tag(Team.them)
+            } .padding()
+            .pickerStyle(SegmentedPickerStyle())
+
             Spacer()
             
             // Summary View
             Button(action: {
-                self.showSummary.toggle()
+                self.showLog.toggle()
             }) {
                 Text("Show Game Log")
-            } .sheet(isPresented: $showSummary) {
+            } .sheet(isPresented: $showLog) {
                 // .environmentObject is needed becasue the sheet does not
                 // inhirit appData from this view
-                ShowSummary().environmentObject(self.appData)
+                ShowLog().environmentObject(self.appData)
             }
         }
         .padding()

@@ -1,5 +1,5 @@
 //
-//  ShowSummary.swift
+//  ShowLog.swift
 //  soccer1
 //
 //  Created by sam on 4/7/20.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct ShowSummary: View {
+struct ShowLog: View {
     
     @Environment(\.presentationMode) var presentationMode:Binding<PresentationMode>
     
@@ -28,8 +28,8 @@ struct ShowSummary: View {
     }
 }
 
-struct ShowSummary_Previews: PreviewProvider {
+struct ShowLog_Previews: PreviewProvider {
     static var previews: some View {
-        ShowSummary()
+        ShowLog()
     }
 }

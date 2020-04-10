@@ -12,34 +12,38 @@ struct ShowStatsButtons: View {
     var gameIndex: Int
     @EnvironmentObject var appData: AppModel
 
+    let usButtonColor = Color.blue
+    let themButtonColor = Color.gray
     let labels = StatType.allCases
     let buttons = [
         [StatType.fk, StatType.ck, StatType.pk],
         [StatType.shot, StatType.save, StatType.goal],
         [StatType.offside, StatType.fifty, StatType.pass]
     ]
+
     var body: some View {
-        
         VStack (spacing: 25){
             ForEach(buttons, id: \.self) { row in
                 HStack (spacing: 25){
                     ForEach(row, id: \.self) { button in
-                        Button(action: { (self.appData.games[self.gameIndex].stats[button]! += 1)
+                        Button(action: { (self.appData.games[self.gameIndex].stats[self.appData.gameState.team]![button]! += 1)
                             withAnimation {}
                         }) {
                             VStack {
-                                Text(self.appData.games[self.gameIndex].stats[button]?.description ?? "")
+                                // show stat count
+                                Text(self.appData.games[self.gameIndex].stats[self.appData.gameState.team]![button]?.description ?? "")
                                     .font(.subheadline)
                                     .fontWeight(.bold)
                                     .foregroundColor(.yellow)
                                 Text("")
+                                // show stat label
                                 Text(button.rawValue)
                                     .fontWeight(.bold)
                             }
                             .frame(width: self.bW(), height: self.bW())
                             .padding(10)
                             .foregroundColor(.white)
-                            .background(Color.blue)
+                            .background(self.appData.gameState.team == .us ? self.usButtonColor : self.themButtonColor)
                             .cornerRadius(self.bW())
                         }
                     } // ForEach row
