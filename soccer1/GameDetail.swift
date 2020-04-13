@@ -86,7 +86,12 @@ struct GameDetail: View {
         elapsedSeconds = 0
         appData.gameState.half = .first
         appData.games[self.gameIndex].log = []
-        appData.games[self.gameIndex].stats = [Team: [StatType : Int]]()
+        appData.games[self.gameIndex].stats.removeAll()
+        for t in Team.allCases {
+            for s in StatType.allCases {
+                appData.games[self.gameIndex].stats.append(StatSummary(team: t, type: s, count: 0))
+            }
+        }
     }
     
     func start2ndHalf() {

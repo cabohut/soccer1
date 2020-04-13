@@ -9,7 +9,7 @@
 import SwiftUI
 
 // I think this needs to be 'struct' for Binding to work
-struct Game: Hashable, Codable, Identifiable {
+struct Game: Equatable, Hashable, Codable, Identifiable {
     var id: Int = 0
     var gameDate: String = ""
     var halfLength: Int = 35
@@ -17,13 +17,19 @@ struct Game: Hashable, Codable, Identifiable {
     var location: String = ""
     var finalScore: String = ""
     var log = [StatLog]()
-    var stats = [Team: [StatType : Int]]()
+    var stats = [StatSummary]()
 }
 
 struct StatLog: Hashable, Codable {
     var time: Int
     var stat: StatType
     var team: Team
+}
+
+struct StatSummary: Hashable, Codable {
+    var team: Team
+    var type: StatType
+    var count: Int
 }
 
 enum StatType: String, Hashable, CaseIterable, Codable {
@@ -42,14 +48,4 @@ enum StatType: String, Hashable, CaseIterable, Codable {
 enum Team: String, Hashable, CaseIterable, Codable {
     case us = "Us"
     case them = "Them"
-}
-
-func getDateTime() -> String {
-    let currentDateTime = Date()
-    let formatter = DateFormatter()
-    formatter.timeStyle = .medium
-    formatter.dateStyle = .long
-    let dateTimeString = formatter.string(from: currentDateTime)
-    
-    return dateTimeString
 }

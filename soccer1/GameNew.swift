@@ -37,7 +37,7 @@ struct GameNew: View {
             
             Spacer()
             HStack {
-                Button(action: {
+                Button(action: {()
                     self.presentationMode.wrappedValue.dismiss()
                 }) {
                     Text("Cancel")
@@ -53,10 +53,8 @@ struct GameNew: View {
     }
     
     private func createNewGame () {
-
         appData.games += [Game()]
         let i = appData.games.count
-        print(appData.games[i-2])
         appData.games[i-1].id = i
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
@@ -65,15 +63,11 @@ struct GameNew: View {
         appData.games[i-1].location = gLoc
         appData.games[i-1].finalScore = ""
         appData.games[i-1].log = []
-//        for t in Team.allCases {
-//            appData.games[i-1].stats.append()
-//        }
-//            for s in StatType.allCases {
-//                print(t, s)
-//                appData.games[i-1].stats[t]?[s] = 0
-//            }
-//        }
-        print(appData.games[i-1])
+        for t in Team.allCases {
+            for s in StatType.allCases {
+                appData.games[i-1].stats.append(StatSummary(team: t, type: s, count: 0))
+            }
+        }
         self.presentationMode.wrappedValue.dismiss()
     }
 }
