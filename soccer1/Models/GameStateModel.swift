@@ -12,7 +12,7 @@ import Foundation
 struct GameState {
     var s: StatType = .fk
     var half: Half = .first
-    var halfStartTime: Int = 0
+    var gameClock: Int = 0
     var team: Team = .us
     var maxStatsTracked: Int = 0
 }

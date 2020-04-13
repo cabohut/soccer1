@@ -8,6 +8,10 @@
 
 import Combine
 import Foundation
+import SwiftUI
+
+let _usButtonColor = Color.blue
+let _themButtonColor = Color.gray
 
 let gameData: [Game] = load("gameData.json")
 

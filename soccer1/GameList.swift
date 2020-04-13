@@ -10,30 +10,30 @@ import SwiftUI
 
 struct GameList: View {
     @EnvironmentObject private var appData: AppModel
-    @State private var showHomeGamesOnly = false
+    @State var addGame = false
     
     var body: some View {
         NavigationView {
             List {
-                Toggle(isOn: $showHomeGamesOnly) {
-                    Text("Home Games Only")
-                }
                 ForEach(appData.games) { game in
-                    if !self.showHomeGamesOnly || (game.location == "Home") {
-                        NavigationLink(destination: GameDetail(game: game)) {
-                            GameRow(game: game)
-                        }
+                    NavigationLink(destination: GameDetail(game: game)) {
+                        GameRow(game: game)
                     }
                 }
             }
             .navigationBarTitle("My Games")
             .navigationBarItems(trailing:
-                Button(action: {})
-                {
-                    Image(systemName: "plus.square").imageScale(.large)
-                })
+                Button(action: {self.addGame.toggle()}) {
+                    Image(systemName: "plus").imageScale(.large)
+                    }
+                    .sheet(isPresented: $addGame) {
+                    GameNew().environmentObject(self.appData)
+                    // .environmentObject is needed becasue appData is not inhirited
+                }
+            )
         }
     }
+    
 }
 
 struct GameList_Previews: PreviewProvider {

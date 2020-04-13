@@ -18,6 +18,7 @@ struct GameRow: View {
             Text(game.finalScore)
             Spacer()
             
+            // @@@@ not needed
             if game.location == "Home" {
                 Image(systemName: "star.fill")
                     .imageScale(.medium)

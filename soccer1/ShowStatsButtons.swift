@@ -12,8 +12,6 @@ struct ShowStatsButtons: View {
     var gameIndex: Int
     @EnvironmentObject var appData: AppModel
 
-    let usButtonColor = Color.blue
-    let themButtonColor = Color.gray
     let labels = StatType.allCases
     let buttons = [
         [StatType.fk, StatType.ck, StatType.pk],
@@ -26,24 +24,27 @@ struct ShowStatsButtons: View {
             ForEach(buttons, id: \.self) { row in
                 HStack (spacing: 25){
                     ForEach(row, id: \.self) { button in
-                        Button(action: { (self.appData.games[self.gameIndex].stats[self.appData.gameState.team]![button]! += 1)
+                        Button(action: { (self.addStat(statType: button))
                             withAnimation {}
                         }) {
                             VStack {
                                 // show stat count
-                                Text(self.appData.games[self.gameIndex].stats[self.appData.gameState.team]![button]?.description ?? "")
-                                    .font(.subheadline)
+                                Text(self.appData.games[self.gameIndex].stats[self.appData.gameState.team]?[button]?.description ?? "")
+                                    .font(self.bW() > 50 ? .subheadline : .caption)
                                     .fontWeight(.bold)
                                     .foregroundColor(.yellow)
+
                                 Text("")
+                                
                                 // show stat label
                                 Text(button.rawValue)
-                                    .fontWeight(.bold)
+                                    .font(self.bW() > 50 ? .subheadline : .caption)
+                                    .fontWeight(self.bW() > 50 ? .bold : .none)
                             }
                             .frame(width: self.bW(), height: self.bW())
                             .padding(10)
                             .foregroundColor(.white)
-                            .background(self.appData.gameState.team == .us ? self.usButtonColor : self.themButtonColor)
+                            .background(self.appData.gameState.team == .us ? _usButtonColor : _themButtonColor)
                             .cornerRadius(self.bW())
                         }
                     } // ForEach row
@@ -52,15 +53,24 @@ struct ShowStatsButtons: View {
         }
     }
 
+    func addStat(statType: StatType) {
+        self.appData.games[self.gameIndex].stats[self.appData.gameState.team]![statType]! += 1
+        self.appData.games[self.gameIndex].log +=
+                    [StatLog(time: self.appData.gameState.gameClock / 60,
+                    stat: statType,
+                    team: self.appData.gameState.team)]
+    }
+
     // calculate buttong width
     func bW() -> CGFloat {
-        return (UIScreen.main.bounds.width - 3 * 65) / 3
+        let w = (UIScreen.main.bounds.width - 3 * 65) / 3
+        return w
     }
 }
 
 struct ShowStatsButtonsView_Previews: PreviewProvider {
     static var previews: some View {
-        ForEach(["iPhone 11"], id:\.self) { deviceName in
+        ForEach(["iPhone SE", "iPhone 11"], id:\.self) { deviceName in
             ShowStatsButtons(gameIndex: 0)
             .previewDevice(PreviewDevice(rawValue: deviceName))
             .previewDisplayName(deviceName)
