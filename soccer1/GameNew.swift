@@ -19,36 +19,41 @@ struct GameNew: View {
     @State private var gLoc = ""
     
     var body: some View {
-        Form {
-            DatePicker(selection: $gDate,displayedComponents: .date, label: { Text("Game Date") })
-            
-            Stepper(value: $gHalf, in: 15...45) {
-                HStack {
-                    Text("Half Length:")
-                    Text(String(gHalf))
+        VStack {
+            Form {
+                DatePicker(selection: $gDate,displayedComponents: .date, label: { Text("Game Date") })
+                
+                Stepper(value: $gHalf, in: 15...45) {
+                    HStack {
+                        Text("Half Length:")
+                        Text(String(gHalf))
+                    }
                 }
+                
+                Spacer()
+                TextField("Opponent", text: $gOpp)
+                
+                Spacer()
+                TextField("Location", text: $gLoc)
             }
-            
-            Spacer()
-            TextField("Opponent", text: $gOpp)
-            
-            Spacer()
-            TextField("Location", text: $gLoc)
-            
-            Spacer()
+            // Buttons need to be outside the form becuase there is a bug where
+            // all the buttons in the same row receive the tap gesture
+            // https://bit.ly/2VjDULq
             HStack {
                 Button(action: {()
-                    self.presentationMode.wrappedValue.dismiss()
+                     self.presentationMode.wrappedValue.dismiss()
                 }) {
                     Text("Cancel")
                 }
+
                 Spacer()
+                
                 Button(action: {
                     self.createNewGame()
                 }) {
                     Text("Save")
                 }
-            }
+            } .padding()
         }
     }
     

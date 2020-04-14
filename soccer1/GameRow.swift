@@ -14,16 +14,11 @@ struct GameRow: View {
     var body: some View {
         HStack {
             Text(game.gameDate)
+                .frame(width: 100, alignment: .leading)
             Text(game.opponent)
+                .frame(width: 100, alignment: .leading)
             Text(game.finalScore)
             Spacer()
-            
-            // @@@@ not needed
-            if game.location == "Home" {
-                Image(systemName: "star.fill")
-                    .imageScale(.medium)
-                    .foregroundColor(.blue)
-            }
         }
         .padding()
     }

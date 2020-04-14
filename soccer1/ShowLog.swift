@@ -21,11 +21,14 @@ struct ShowLog: View {
                 Section(header: Text("Game Log")) {
                     ForEach(0..<self.appData.games[self.gameIndex].log.count, id: \.self) { i in
                         HStack {
-                            Text(String(self.appData.games[self.gameIndex].log[i].time) + "'").multilineTextAlignment(.trailing).frame(width: 30)
+                            Text(String(self.appData.games[self.gameIndex].log[i].time) + "'")
+                                .frame(width: 30, alignment: .trailing)
                             Spacer(minLength: 30)
-                            Text(self.appData.games[self.gameIndex].log[i].stat.rawValue).frame(width: 70)
+                            Text(self.appData.games[self.gameIndex].log[i].stat.rawValue)
+                                .frame(width: 70, alignment: .center)
                             Spacer(minLength: 30)
-                            Text(self.appData.games[self.gameIndex].log[i].team.rawValue).frame(width: 60)
+                            Text(self.appData.games[self.gameIndex].log[i].team.rawValue)
+                                .frame(width: 60, alignment: .center)
                             }
                             .padding(.leading, 40)
                             .padding(.trailing, 40)

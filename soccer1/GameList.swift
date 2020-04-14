@@ -24,7 +24,7 @@ struct GameList: View {
             .navigationBarTitle("My Games")
             .navigationBarItems(trailing:
                 Button(action: {self.addGame.toggle()}) {
-                    Image(systemName: "plus").imageScale(.large)
+                        Image(systemName: "plus").imageScale(.large)
                     }
                     .sheet(isPresented: $addGame) {
                     GameNew().environmentObject(self.appData)

@@ -13,6 +13,7 @@ struct ShowStatsButtons: View {
     @EnvironmentObject var appData: AppModel
 
     let labels = StatType.allCases
+    // statLabels is 3x3 matrix for the stats buttons layout
     let statLabels = [
         [StatType.fk, StatType.ck, StatType.pk],
         [StatType.shot, StatType.save, StatType.goal],
@@ -35,7 +36,7 @@ struct ShowStatsButtons: View {
                                     .foregroundColor(.yellow)
 
                                 Text("")
-                                
+
                                 // show stat label
                                 Text(statLabel.rawValue)
                                     .font(self.bW() > 50 ? .subheadline : .caption)
@@ -47,15 +48,16 @@ struct ShowStatsButtons: View {
                             .background(self.appData.gameState.team == .us ? _usButtonColor : _themButtonColor)
                             .cornerRadius(self.bW())
                         }
-                    } // ForEach row
+                    } // ForEach statLabel
                 }
-            } // ForEach buttons
+            } // ForEach row
         }
     }
 
     func getStat(type: StatType) -> String {
-        guard let statIndex = appData.games[self.gameIndex].stats.firstIndex(where: { $0.team.rawValue == self.appData.gameState.team.rawValue && $0.type == type}) else { return "" }
-        let s = appData.games[self.gameIndex].stats[statIndex].count > 0 ? String(appData.games[self.gameIndex].stats[statIndex].count) : ""
+        // get index for the stat
+        guard let statIndex = appData.games[self.gameIndex].stats.firstIndex(where: { $0.team.rawValue == self.appData.gameState.team.rawValue && $0.type == type}) else { return " " }
+        let s = appData.games[self.gameIndex].stats[statIndex].count > 0 ? String(appData.games[self.gameIndex].stats[statIndex].count) : " "
         return (s)
     }
     
