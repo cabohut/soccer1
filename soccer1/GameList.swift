@@ -10,30 +10,56 @@ import SwiftUI
 
 struct GameList: View {
     @EnvironmentObject private var appData: AppModel
-    @State var addGame = false
+    @State private var addGame = false
+    @State private var editMode = EditMode.inactive
     
     var body: some View {
         NavigationView {
             List {
                 ForEach(appData.games) { game in
-                    NavigationLink(destination: GameDetail(game: game)) {
+                    NavigationLink(destination: GameDetail(gameID: game.id)) {
                         GameRow(game: game)
-                    }
+                        } .frame(height: 50)
                 }
+                .onDelete(perform: onDelete)
+                .onMove(perform: onMove(source:destination:))
             }
             .navigationBarTitle("My Games")
-            .navigationBarItems(trailing:
-                Button(action: {self.addGame.toggle()}) {
-                        Image(systemName: "plus").imageScale(.large)
-                    }
-                    .sheet(isPresented: $addGame) {
-                    GameNew().environmentObject(self.appData)
-                    // .environmentObject is needed becasue appData is not inhirited
-                }
-            )
+            .navigationBarItems(leading: EditButton(), trailing: addButton)
+            .environment(\.editMode, $editMode)
+//                Button(action: {self.addGame.toggle()}) {
+//                        Image(systemName: "plus").imageScale(.large)
+//                    }
+//                    .sheet(isPresented: $addGame) {
+//                    GameNew().environmentObject(self.appData)
+//                    // .environmentObject is needed becasue appData is not inhirited
+//                }
         }
     }
     
+    private var addButton: some View {
+        switch editMode {
+        case .inactive:
+            return AnyView(Button(action: onAdd) { Image(systemName: "plus") }
+            )
+        default:
+            return AnyView(EmptyView())
+        }
+    }
+    
+    private func onAdd () {
+        
+    }
+    
+    private func onDelete(at offsets: IndexSet) {
+        print(offsets)
+        appData.games.remove(atOffsets: offsets)
+        print("In onDelete: count=\(appData.games.count)")
+    }
+    
+    private func onMove(source: IndexSet, destination: Int) {
+        appData.games.move(fromOffsets: source, toOffset: destination)
+    }
 }
 
 struct GameList_Previews: PreviewProvider {

@@ -13,12 +13,18 @@ struct GameRow: View {
 
     var body: some View {
         HStack {
-            Text(game.gameDate)
-                .frame(width: 100, alignment: .leading)
-            Text(game.opponent)
-                .frame(width: 100, alignment: .leading)
-            Text(game.finalScore)
+            VStack (alignment: .leading) {
+                HStack {
+                    Text(game.opponent).fontWeight(.bold)
+                        .frame(width: 100, alignment: .leading)
+                    Text(game.location)
+                        .frame(width: 100, alignment: .leading)
+                }
+                Text(game.gameDate).font(.subheadline).foregroundColor(.gray)
+                    .frame(width: 100, alignment: .leading)
+            }
             Spacer()
+            Text(game.finalScore).frame(width: 40, alignment: .trailing)
         }
         .padding()
     }

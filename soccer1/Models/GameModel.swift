@@ -10,7 +10,7 @@ import SwiftUI
 
 // I think this needs to be 'struct' for Binding to work
 struct Game: Equatable, Hashable, Codable, Identifiable {
-    var id: Int = 0
+    var id = UUID()
     var gameDate: String = ""
     var halfLength: Int = 35
     var opponent: String = ""

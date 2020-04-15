@@ -53,7 +53,7 @@ struct ShowStatsButtons: View {
             } // ForEach row
         }
     }
-
+    
     func getStat(type: StatType) -> String {
         // get index for the stat
         guard let statIndex = appData.games[self.gameIndex].stats.firstIndex(where: { $0.team.rawValue == self.appData.gameState.team.rawValue && $0.type == type}) else { return " " }

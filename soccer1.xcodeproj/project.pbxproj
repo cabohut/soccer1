@@ -10,6 +10,7 @@
 		927678AD242F2ADC00CB2091 /* GameRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927678AC242F2ADC00CB2091 /* GameRow.swift */; };
 		927678B62433013100CB2091 /* gameData.json in Resources */ = {isa = PBXBuildFile; fileRef = 927678B52433013100CB2091 /* gameData.json */; };
 		927678B824330E8D00CB2091 /* GameList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927678B724330E8D00CB2091 /* GameList.swift */; };
+		927CE1992447C30B0013F08A /* soccer1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927CE1982447C30B0013F08A /* soccer1Tests.swift */; };
 		928453F3243D982E00EEF40E /* ShowLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928453F2243D982E00EEF40E /* ShowLog.swift */; };
 		928BB919243858C100BA4BCC /* GameStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928BB918243858C100BA4BCC /* GameStateModel.swift */; };
 		928BB91B24385F7F00BA4BCC /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928BB91A24385F7F00BA4BCC /* AppModel.swift */; };
@@ -24,10 +25,23 @@
 		92FEB32B242C80D1005E74F6 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FEB32A242C80D1005E74F6 /* GameModel.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		927CE19B2447C30B0013F08A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92FEB309242C7BAD005E74F6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 92FEB310242C7BAD005E74F6;
+			remoteInfo = soccer1;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		927678AC242F2ADC00CB2091 /* GameRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRow.swift; sourceTree = "<group>"; };
 		927678B52433013100CB2091 /* gameData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = gameData.json; sourceTree = "<group>"; };
 		927678B724330E8D00CB2091 /* GameList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameList.swift; sourceTree = "<group>"; };
+		927CE1962447C30B0013F08A /* soccer1Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = soccer1Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		927CE1982447C30B0013F08A /* soccer1Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = soccer1Tests.swift; sourceTree = "<group>"; };
+		927CE19A2447C30B0013F08A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		928453F2243D982E00EEF40E /* ShowLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowLog.swift; sourceTree = "<group>"; };
 		928BB918243858C100BA4BCC /* GameStateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateModel.swift; sourceTree = "<group>"; };
 		928BB91A24385F7F00BA4BCC /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
@@ -45,6 +59,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		927CE1932447C30B0013F08A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		92FEB30E242C7BAD005E74F6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -73,10 +94,29 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		927CE1972447C30B0013F08A /* soccer1Tests */ = {
+			isa = PBXGroup;
+			children = (
+				927CE1982447C30B0013F08A /* soccer1Tests.swift */,
+				927CE19A2447C30B0013F08A /* Info.plist */,
+			);
+			path = soccer1Tests;
+			sourceTree = "<group>";
+		};
+		927CE1A02447C3720013F08A /* App */ = {
+			isa = PBXGroup;
+			children = (
+				92FEB314242C7BAD005E74F6 /* AppDelegate.swift */,
+				92FEB316242C7BAD005E74F6 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
 		92FEB308242C7BAD005E74F6 = {
 			isa = PBXGroup;
 			children = (
 				92FEB313242C7BAD005E74F6 /* soccer1 */,
+				927CE1972447C30B0013F08A /* soccer1Tests */,
 				92FEB312242C7BAD005E74F6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -85,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				92FEB311242C7BAD005E74F6 /* soccer1.app */,
+				927CE1962447C30B0013F08A /* soccer1Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -99,12 +140,11 @@
 				92B2279D2435567300B91595 /* ShowStatsButtons.swift */,
 				92E7FDA52442D775009F4977 /* GameNew.swift */,
 				928453F2243D982E00EEF40E /* ShowLog.swift */,
-				92FEB314242C7BAD005E74F6 /* AppDelegate.swift */,
-				92FEB316242C7BAD005E74F6 /* SceneDelegate.swift */,
+				927678B4243300E400CB2091 /* Resources */,
+				927CE1A02447C3720013F08A /* App */,
 				92FEB31A242C7BAF005E74F6 /* Assets.xcassets */,
 				92FEB31F242C7BAF005E74F6 /* LaunchScreen.storyboard */,
 				92FEB322242C7BAF005E74F6 /* Info.plist */,
-				927678B4243300E400CB2091 /* Resources */,
 				92FEB31C242C7BAF005E74F6 /* Preview Content */,
 			);
 			path = soccer1;
@@ -121,6 +161,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		927CE1952447C30B0013F08A /* soccer1Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 927CE19D2447C30B0013F08A /* Build configuration list for PBXNativeTarget "soccer1Tests" */;
+			buildPhases = (
+				927CE1922447C30B0013F08A /* Sources */,
+				927CE1932447C30B0013F08A /* Frameworks */,
+				927CE1942447C30B0013F08A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				927CE19C2447C30B0013F08A /* PBXTargetDependency */,
+			);
+			name = soccer1Tests;
+			productName = soccer1Tests;
+			productReference = 927CE1962447C30B0013F08A /* soccer1Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		92FEB310242C7BAD005E74F6 /* soccer1 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 92FEB325242C7BAF005E74F6 /* Build configuration list for PBXNativeTarget "soccer1" */;
@@ -148,6 +206,10 @@
 				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = Cabohut;
 				TargetAttributes = {
+					927CE1952447C30B0013F08A = {
+						CreatedOnToolsVersion = 11.4;
+						TestTargetID = 92FEB310242C7BAD005E74F6;
+					};
 					92FEB310242C7BAD005E74F6 = {
 						CreatedOnToolsVersion = 11.4;
 					};
@@ -167,11 +229,19 @@
 			projectRoot = "";
 			targets = (
 				92FEB310242C7BAD005E74F6 /* soccer1 */,
+				927CE1952447C30B0013F08A /* soccer1Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		927CE1942447C30B0013F08A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		92FEB30F242C7BAD005E74F6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -186,6 +256,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		927CE1922447C30B0013F08A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				927CE1992447C30B0013F08A /* soccer1Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		92FEB30D242C7BAD005E74F6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -206,6 +284,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		927CE19C2447C30B0013F08A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 92FEB310242C7BAD005E74F6 /* soccer1 */;
+			targetProxy = 927CE19B2447C30B0013F08A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		92FEB31F242C7BAF005E74F6 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -218,6 +304,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		927CE19E2447C30B0013F08A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 25LN5833Z7;
+				INFOPLIST_FILE = soccer1Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = cabohut.soccer1Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/soccer1.app/soccer1";
+			};
+			name = Debug;
+		};
+		927CE19F2447C30B0013F08A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 25LN5833Z7;
+				INFOPLIST_FILE = soccer1Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = cabohut.soccer1Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/soccer1.app/soccer1";
+			};
+			name = Release;
+		};
 		92FEB323242C7BAF005E74F6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -375,6 +501,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		927CE19D2447C30B0013F08A /* Build configuration list for PBXNativeTarget "soccer1Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				927CE19E2447C30B0013F08A /* Debug */,
+				927CE19F2447C30B0013F08A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		92FEB30C242C7BAD005E74F6 /* Build configuration list for PBXProject "soccer1" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

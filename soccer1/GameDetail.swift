@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct GameDetail: View {
-    var game: Game
+    var gameID: UUID
     
     @EnvironmentObject var appData: AppModel
     
@@ -21,11 +21,10 @@ struct GameDetail: View {
 
     // gameIndex will be used to acccess or update the model
     var gameIndex: Int {
-        appData.games.firstIndex(where: { $0.id == game.id})!
+        appData.games.firstIndex(where: { $0.id == gameID}) ?? 0
     }
 
     var body: some View {
-
         VStack (spacing: 5) {
             HStack {
                 Button(action: {(self.startGame())}) {
@@ -38,7 +37,7 @@ struct GameDetail: View {
             }
             
             Spacer()
-
+            
             // Timer
             Text(timerDisplay)
                 .padding(15)
@@ -79,7 +78,7 @@ struct GameDetail: View {
             }
         }
         .padding()
-        .navigationBarTitle(game.opponent)
+        .navigationBarTitle(self.gameIndex >= 0 ? appData.games[self.gameIndex].opponent : "")
     }
     
     func startGame() {
@@ -109,14 +108,14 @@ struct GameDetail: View {
 }
 
 #if DEBUG
-struct GameDetail_Previews: PreviewProvider {
-    static var previews: some View {
-        ForEach(["iPhone SE", "iPhone 11"], id:\.self) { deviceName in
-            GameDetail(game: gameData[0])
-            .previewDevice(PreviewDevice(rawValue: deviceName))
-            .previewDisplayName(deviceName)
-            .environmentObject(AppModel())
-        }
-    }
-}
+//struct GameDetail_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ForEach(["iPhone SE", "iPhone 11"], id:\.self) { deviceName in
+//            GameDetail(gameID: .constant(UUID))
+//            .previewDevice(PreviewDevice(rawValue: deviceName))
+//            .previewDisplayName(deviceName)
+//            .environmentObject(AppModel())
+//        }
+//    }
+//}
 #endif

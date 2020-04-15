@@ -50,17 +50,18 @@ struct GameNew: View {
                 
                 Button(action: {
                     self.createNewGame()
+                    self.presentationMode.wrappedValue.dismiss()
                 }) {
                     Text("Save")
                 }
             } .padding()
         }
     }
-    
+
     private func createNewGame () {
         appData.games += [Game()]
         let i = appData.games.count
-        appData.games[i-1].id = i
+        appData.games[i-1].id = UUID()
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
         appData.games[i-1].gameDate = dateFormatter.string(from: gDate)
@@ -73,7 +74,6 @@ struct GameNew: View {
                 appData.games[i-1].stats.append(StatSummary(team: t, type: s, count: 0))
             }
         }
-        self.presentationMode.wrappedValue.dismiss()
     }
 }
 
