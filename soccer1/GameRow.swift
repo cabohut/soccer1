@@ -16,9 +16,8 @@ struct GameRow: View {
             VStack (alignment: .leading) {
                 HStack {
                     Text(game.opponent).fontWeight(.bold)
-                        .frame(width: 100, alignment: .leading)
+                        .frame(width: 80, alignment: .leading)
                     Text(game.location)
-                        .frame(width: 100, alignment: .leading)
                 }
                 Text(game.gameDate).font(.subheadline).foregroundColor(.gray)
                     .frame(width: 100, alignment: .leading)

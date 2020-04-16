@@ -12,12 +12,8 @@ struct GameDetail: View {
     var gameID: UUID
     
     @EnvironmentObject var appData: AppModel
-    
-    @State private var showLog = false
     @State var elapsedSeconds: Int = 0
-    @State var timerDisplay: String = "0:00"
-
-    var timer = Timer.publish (every: 1, on: .main, in: .common).autoconnect()
+    @State private var showLog = false
 
     // gameIndex will be used to acccess or update the model
     var gameIndex: Int {
@@ -36,21 +32,10 @@ struct GameDetail: View {
                 }
             }
             
-            Text(String(appData.games.count))
-            
             Spacer()
             
             // Timer
-            Text(timerDisplay)
-                .padding(15)
-                .frame(width: 180, height: 70)
-                .font(.system(size: 36, design: .monospaced))
-                .background(Color.gray)
-                .opacity(0.4)
-                .cornerRadius(20)
-                .onReceive(timer) { _ in
-                    self.updateTimer()
-                }
+            ShowTimer()
             
             Spacer()
             
@@ -100,13 +85,6 @@ struct GameDetail: View {
         elapsedSeconds = appData.games[self.gameIndex].halfLength * 60
     }
     
-    func updateTimer() {
-        self.elapsedSeconds += 1
-        self.appData.gameState.gameClock = self.elapsedSeconds
-        let m = self.elapsedSeconds % 3600 / 60
-        let s = self.elapsedSeconds % 60
-        self.timerDisplay = String(format: "%01d:%02d", m, s)
-    }
 }
 
 struct GameDetail_Previews: PreviewProvider {
@@ -117,5 +95,34 @@ struct GameDetail_Previews: PreviewProvider {
             .previewDisplayName(deviceName)
             .environmentObject(AppModel())
         }
+    }
+}
+
+struct ShowTimer: View {
+    @EnvironmentObject var appData: AppModel
+    @State var timerDisplay: String = "0:00"
+    @State var elapsedSeconds: Int = 0
+
+    var timer = Timer.publish (every: 1, on: .main, in: .common).autoconnect()
+
+    var body: some View {
+        Text(timerDisplay)
+            .padding(15)
+            .frame(width: 180, height: 70)
+            .font(.system(size: 36, design: .monospaced))
+            .background(Color.gray)
+            .opacity(0.4)
+            .cornerRadius(20)
+            .onReceive(timer) { _ in
+                self.updateTimer()
+        }
+    }
+
+    func updateTimer() {
+        self.elapsedSeconds += 1
+        self.appData.gameState.gameClock = self.elapsedSeconds
+        let m = self.elapsedSeconds % 3600 / 60
+        let s = self.elapsedSeconds % 60
+        self.timerDisplay = String(format: "%01d:%02d", m, s)
     }
 }

@@ -22,7 +22,7 @@ final class AppModel: ObservableObject {
 
 func sampleData () -> [Game] {
     var sampleGames = [Game]()
-    let numSamples = 3
+    let numSamples = 30
     let numSampleStats = 15
     let opp = ["Poway", "4S", "La Jolla", "Encinitas", "Vista", "Hemet", "Galaxy"]
     let loc = ["Stonebridge", "Jerabek Park", "Community Park", "Spring Canyon", "Jerabek School"]
@@ -45,7 +45,6 @@ func sampleData () -> [Game] {
             }
         }
         
-        print(sampleGames.count)
         for j in 0..<numSampleStats {
             let t = Team.allCases.randomElement()!
             let s = StatType.allCases.randomElement()!

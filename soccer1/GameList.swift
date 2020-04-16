@@ -19,36 +19,23 @@ struct GameList: View {
                 ForEach(appData.games) { game in
                     NavigationLink(destination: GameDetail(gameID: game.id)) {
                         GameRow(game: game)
-                        } .frame(height: 50)
-                }
-                .onDelete(perform: onDelete)
-                .onMove(perform: onMove(source:destination:))
+                    } .frame(height: 50)
+                }   .onDelete(perform: onDelete)
+                    .onMove(perform: onMove(source:destination:))
             }
-            .navigationBarTitle("My Games")
-//            .navigationBarItems(leading: EditButton(), trailing: addButton)
-//            .environment(\.editMode, $editMode)
+            .navigationBarTitle("My Games", displayMode: .inline)
             .navigationBarItems(leading: EditButton(), trailing:
                 Button(action: {self.addGame.toggle()}) {
-                        Image(systemName: "plus").imageScale(.large)
+                    if !editMode.isEditing {
+                        Image(systemName: "plus")
                     }
-                    .sheet(isPresented: $addGame) {
+                }
+                .sheet(isPresented: $addGame) {
                     GameNew().environmentObject(self.appData)
                     // .environmentObject is needed becasue appData is not inhirited
                 })
             .environment(\.editMode, $editMode)
         }
-    }
-    
-    private var addButton: some View {
-        switch editMode {
-        case .inactive:
-            return AnyView(Button(action: onAdd) { Image(systemName: "plus") })
-        default:
-            return AnyView(EmptyView())
-        }
-    }
-    
-    private func onAdd () {
     }
     
     private func onDelete(at offsets: IndexSet) {
