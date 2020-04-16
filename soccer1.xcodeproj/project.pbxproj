@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		927678AD242F2ADC00CB2091 /* GameRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927678AC242F2ADC00CB2091 /* GameRow.swift */; };
-		927678B62433013100CB2091 /* gameData.json in Resources */ = {isa = PBXBuildFile; fileRef = 927678B52433013100CB2091 /* gameData.json */; };
 		927678B824330E8D00CB2091 /* GameList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927678B724330E8D00CB2091 /* GameList.swift */; };
 		927CE1992447C30B0013F08A /* soccer1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927CE1982447C30B0013F08A /* soccer1Tests.swift */; };
 		928453F3243D982E00EEF40E /* ShowLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928453F2243D982E00EEF40E /* ShowLog.swift */; };
@@ -37,7 +36,6 @@
 
 /* Begin PBXFileReference section */
 		927678AC242F2ADC00CB2091 /* GameRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRow.swift; sourceTree = "<group>"; };
-		927678B52433013100CB2091 /* gameData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = gameData.json; sourceTree = "<group>"; };
 		927678B724330E8D00CB2091 /* GameList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameList.swift; sourceTree = "<group>"; };
 		927CE1962447C30B0013F08A /* soccer1Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = soccer1Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		927CE1982447C30B0013F08A /* soccer1Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = soccer1Tests.swift; sourceTree = "<group>"; };
@@ -86,14 +84,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		927678B4243300E400CB2091 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				927678B52433013100CB2091 /* gameData.json */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		927CE1972447C30B0013F08A /* soccer1Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,7 +130,6 @@
 				92B2279D2435567300B91595 /* ShowStatsButtons.swift */,
 				92E7FDA52442D775009F4977 /* GameNew.swift */,
 				928453F2243D982E00EEF40E /* ShowLog.swift */,
-				927678B4243300E400CB2091 /* Resources */,
 				927CE1A02447C3720013F08A /* App */,
 				92FEB31A242C7BAF005E74F6 /* Assets.xcassets */,
 				92FEB31F242C7BAF005E74F6 /* LaunchScreen.storyboard */,
@@ -249,7 +238,6 @@
 				92FEB321242C7BAF005E74F6 /* LaunchScreen.storyboard in Resources */,
 				92FEB31E242C7BAF005E74F6 /* Preview Assets.xcassets in Resources */,
 				92FEB31B242C7BAF005E74F6 /* Assets.xcassets in Resources */,
-				927678B62433013100CB2091 /* gameData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -36,6 +36,8 @@ struct GameDetail: View {
                 }
             }
             
+            Text(String(appData.games.count))
+            
             Spacer()
             
             // Timer
@@ -78,7 +80,7 @@ struct GameDetail: View {
             }
         }
         .padding()
-        .navigationBarTitle(self.gameIndex >= 0 ? appData.games[self.gameIndex].opponent : "")
+        .navigationBarTitle(appData.games.count > 0 ? appData.games[self.gameIndex].opponent : "")
     }
     
     func startGame() {
@@ -107,15 +109,13 @@ struct GameDetail: View {
     }
 }
 
-#if DEBUG
-//struct GameDetail_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ForEach(["iPhone SE", "iPhone 11"], id:\.self) { deviceName in
-//            GameDetail(gameID: .constant(UUID))
-//            .previewDevice(PreviewDevice(rawValue: deviceName))
-//            .previewDisplayName(deviceName)
-//            .environmentObject(AppModel())
-//        }
-//    }
-//}
-#endif
+struct GameDetail_Previews: PreviewProvider {
+    static var previews: some View {
+        ForEach(["iPhone SE", "iPhone 11"], id:\.self) { deviceName in
+            GameDetail(gameID: gameData[0].id)
+            .previewDevice(PreviewDevice(rawValue: deviceName))
+            .previewDisplayName(deviceName)
+            .environmentObject(AppModel())
+        }
+    }
+}

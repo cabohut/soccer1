@@ -25,36 +25,34 @@ struct GameList: View {
                 .onMove(perform: onMove(source:destination:))
             }
             .navigationBarTitle("My Games")
-            .navigationBarItems(leading: EditButton(), trailing: addButton)
+//            .navigationBarItems(leading: EditButton(), trailing: addButton)
+//            .environment(\.editMode, $editMode)
+            .navigationBarItems(leading: EditButton(), trailing:
+                Button(action: {self.addGame.toggle()}) {
+                        Image(systemName: "plus").imageScale(.large)
+                    }
+                    .sheet(isPresented: $addGame) {
+                    GameNew().environmentObject(self.appData)
+                    // .environmentObject is needed becasue appData is not inhirited
+                })
             .environment(\.editMode, $editMode)
-//                Button(action: {self.addGame.toggle()}) {
-//                        Image(systemName: "plus").imageScale(.large)
-//                    }
-//                    .sheet(isPresented: $addGame) {
-//                    GameNew().environmentObject(self.appData)
-//                    // .environmentObject is needed becasue appData is not inhirited
-//                }
         }
     }
     
     private var addButton: some View {
         switch editMode {
         case .inactive:
-            return AnyView(Button(action: onAdd) { Image(systemName: "plus") }
-            )
+            return AnyView(Button(action: onAdd) { Image(systemName: "plus") })
         default:
             return AnyView(EmptyView())
         }
     }
     
     private func onAdd () {
-        
     }
     
     private func onDelete(at offsets: IndexSet) {
-        print(offsets)
         appData.games.remove(atOffsets: offsets)
-        print("In onDelete: count=\(appData.games.count)")
     }
     
     private func onMove(source: IndexSet, destination: Int) {
