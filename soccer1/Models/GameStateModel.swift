@@ -14,7 +14,7 @@ struct GameState {
     var half: Half = .first
     var gameClock: Int = 0
     var team: Team = .us
-    var maxStatsTracked: Int = 0
+    var lastStatIndex: [Team: Int] = [Team.us: -1, Team.them: -1]
 }
 
 enum Half: Int, Codable {

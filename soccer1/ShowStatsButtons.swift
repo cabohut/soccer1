@@ -67,14 +67,19 @@ struct ShowStatsButtons: View {
     
     func addStat(type: StatType) {
         // get the stat index
-        guard let statIndex = appData.games[self.gameIndex].stats.firstIndex(where: { $0.team.rawValue == self.appData.gameState.team.rawValue && $0.type == type}) else { return }
+        guard let statIndex = appData.games[gameIndex].stats.firstIndex(where: { $0.team.rawValue == appData.gameState.team.rawValue && $0.type == type}) else { return }
+        
+        // Save last stat index for Undo
+        self.appData.gameState.lastStatIndex[appData.gameState.team] = statIndex
+        
         // increment the stat count by 1
-        appData.games[self.gameIndex].stats[statIndex].count += 1
+        appData.games[gameIndex].stats[statIndex].count += 1
+        
         // add stat log
-        self.appData.games[self.gameIndex].log +=
-                    [StatLog(time: self.appData.gameState.gameClock / 60 + 1,
+        appData.games[gameIndex].log +=
+                    [StatLog(time: appData.gameState.gameClock / 60 + 1,
                     stat: type,
-                    team: self.appData.gameState.team)]
+                    team: appData.gameState.team)]
     }
 
     // calculate buttong width

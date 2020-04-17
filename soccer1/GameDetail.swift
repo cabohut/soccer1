@@ -31,27 +31,30 @@ struct GameDetail: View {
                     Text("Start 2nd Half")
                 }
             }
-            
             Spacer()
             
             // Timer
             ShowTimer()
-            
             Spacer()
             
             // Stats buttons
             ShowStatsButtons(gameIndex: self.gameIndex)
-             
+            
+            if appData.gameState.lastStatIndex[appData.gameState.team]! > -1 {
+                Button(action: { self.undoStat() }) {
+                    Text("Undo Last Stat").frame(height: 60)
+                }
+            } else { // disabled look button
+                Text("Undo Last Stat").foregroundColor(.gray).frame(height: 60)
+            }
             Spacer()
             
             // Us or Them selector
             Picker("", selection: $appData.gameState.team) {
                 Text("Us").tag(Team.us)
                 Text("Them").tag(Team.them)
-            }
-            .padding()
-            .pickerStyle(SegmentedPickerStyle())
-
+            }   .padding()
+                .pickerStyle(SegmentedPickerStyle())
             Spacer()
             
             // Summary View
@@ -63,26 +66,39 @@ struct GameDetail: View {
                 ShowLog(gameIndex: self.gameIndex).environmentObject(self.appData)
                 // .environmentObject is needed becasue appData is not inhirited
             }
-        }
-        .padding()
-        .navigationBarTitle(appData.games.count > 0 ? appData.games[self.gameIndex].opponent : "")
+        }   .padding()
+            .navigationBarTitle(appData.games.count > 0 ? appData.games[gameIndex].opponent : "")
+            .onAppear(perform: resetGameState)
     }
     
     func startGame() {
+        resetGameState()
+        
         elapsedSeconds = 0
-        appData.gameState.half = .first
-        appData.games[self.gameIndex].log = []
-        appData.games[self.gameIndex].stats.removeAll()
+        appData.games[gameIndex].log = []
+        appData.games[gameIndex].stats.removeAll()
         for t in Team.allCases {
             for s in StatType.allCases {
-                appData.games[self.gameIndex].stats.append(StatSummary(team: t, type: s, count: 0))
+                appData.games[gameIndex].stats.append(StatSummary(team: t, type: s, count: 0))
             }
         }
+    }
+    
+    func resetGameState() {
+        appData.gameState.half = .first
+        appData.gameState.team = .us
+        appData.gameState.lastStatIndex = [Team.us: -1, Team.them: -1]
     }
     
     func start2ndHalf() {
         self.appData.gameState.half = .second
         elapsedSeconds = appData.games[self.gameIndex].halfLength * 60
+    }
+    
+    func undoStat() {
+        appData.games[gameIndex].stats[appData.gameState.lastStatIndex[appData.gameState.team]!].count -= 1
+        appData.games[gameIndex].log.removeLast(1)
+        appData.gameState.lastStatIndex[appData.gameState.team] = -1
     }
     
 }
