@@ -15,7 +15,7 @@ struct ShowStatsButtons: View {
     let labels = StatType.allCases
     // statLabels is 3x3 matrix for the stats buttons layout
     let statLabels = [
-        [StatType.fk, StatType.ck, StatType.pk],
+        [StatType.pk, StatType.fk, StatType.ck],
         [StatType.shot, StatType.save, StatType.goal],
         [StatType.offside, StatType.fifty, StatType.pass]
     ]
@@ -26,21 +26,17 @@ struct ShowStatsButtons: View {
                 HStack (spacing: 25){
                     ForEach(row, id: \.self) { statLabel in
                         Button(action: { (self.addStat(type: statLabel))
-                            withAnimation {}
+                            //withAnimation {}
                         }) {
-                            VStack {
+                            VStack (spacing: 10){
                                 // show stat count
                                 Text(self.getStat(type: statLabel))
-                                    .font(self.bW() > 50 ? .subheadline : .caption)
-                                    .fontWeight(.bold)
+                                    .font(self.bW() > 50 ? .headline : .subheadline)
                                     .foregroundColor(.yellow)
-
-                                Text("")
 
                                 // show stat label
                                 Text(statLabel.rawValue)
-                                    .font(self.bW() > 50 ? .subheadline : .caption)
-                                    .fontWeight(self.bW() > 50 ? .bold : .none)
+                                    .font(self.bW() > 50 ? .headline : .caption)
                             }
                             .frame(width: self.bW(), height: self.bW())
                             .padding(10)
@@ -57,8 +53,8 @@ struct ShowStatsButtons: View {
     func getStat(type: StatType) -> String {
         // get index for the stat
         if appData.games.count > 0 {
-            guard let statIndex = appData.games[self.gameIndex].stats.firstIndex(where: { $0.team.rawValue == self.appData.gameState.team.rawValue && $0.type == type}) else { return " " }
-            let s = appData.games[self.gameIndex].stats[statIndex].count > 0 ? String(appData.games[self.gameIndex].stats[statIndex].count) : " "
+            guard let statIndex = appData.games[gameIndex].stats.firstIndex(where: { $0.team.rawValue == appData.gameState.team.rawValue && $0.type == type}) else { return " " }
+            let s = appData.games[gameIndex].stats[statIndex].count > 0 ? String(appData.games[gameIndex].stats[statIndex].count) : " "
             return (s)
         } else {
             return ("")
@@ -77,7 +73,7 @@ struct ShowStatsButtons: View {
         
         // add stat log
         appData.games[gameIndex].log +=
-                    [StatLog(time: appData.gameState.gameClock / 60 + 1,
+                    [StatLog(time: appData.gameState.elapsedSeconds / 60 + 1,
                     stat: type,
                     team: appData.gameState.team)]
     }
@@ -91,7 +87,7 @@ struct ShowStatsButtons: View {
 
 struct ShowStatsButtonsView_Previews: PreviewProvider {
     static var previews: some View {
-        ForEach(["iPhone SE", "iPhone 11"], id:\.self) { deviceName in
+        ForEach(["iPhone SE", "iPhone Xs"], id:\.self) { deviceName in
             ShowStatsButtons(gameIndex: 0)
             .previewDevice(PreviewDevice(rawValue: deviceName))
             .previewDisplayName(deviceName)

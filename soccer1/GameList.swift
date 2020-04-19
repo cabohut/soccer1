@@ -24,10 +24,11 @@ struct GameList: View {
                     .onMove(perform: onMove(source:destination:))
             }
             .navigationBarTitle("My Games", displayMode: .inline)
-            .navigationBarItems(leading: EditButton(), trailing:
+            .navigationBarItems(leading: EditButton().font(.headline), trailing:
                 Button(action: {self.addGame.toggle()}) {
                     if !editMode.isEditing {
-                        Image(systemName: "plus")
+                        //Image(systemName: "plus").font(.headline)
+                        Text("Add Game").font(.headline)
                     }
                 }
                 .sheet(isPresented: $addGame) {

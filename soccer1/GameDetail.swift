@@ -12,8 +12,9 @@ struct GameDetail: View {
     var gameID: UUID
     
     @EnvironmentObject var appData: AppModel
-    @State var elapsedSeconds: Int = 0
     @State private var showLog = false
+    @State var timerDisplay: String = "0:00"
+    @State var timer = Timer.publish (every: 1, on: .main, in: .common).autoconnect()
 
     // gameIndex will be used to acccess or update the model
     var gameIndex: Int {
@@ -34,7 +35,14 @@ struct GameDetail: View {
             Spacer()
             
             // Timer
-            ShowTimer()
+            Text(timerDisplay)
+                .font(.system(size: 36, design: .monospaced))
+                .padding(15).frame(width: 180, height: 70)
+                .background(Color.gray).opacity(0.4).cornerRadius(10)
+                .onReceive(timer) { _ in
+                    self.updateTimer()
+            }
+
             Spacer()
             
             // Stats buttons
@@ -74,7 +82,7 @@ struct GameDetail: View {
     func startGame() {
         resetGameState()
         
-        elapsedSeconds = 0
+        appData.gameState.elapsedSeconds = 0
         appData.games[gameIndex].log = []
         appData.games[gameIndex].stats.removeAll()
         for t in Team.allCases {
@@ -88,11 +96,12 @@ struct GameDetail: View {
         appData.gameState.half = .first
         appData.gameState.team = .us
         appData.gameState.lastStatIndex = [Team.us: -1, Team.them: -1]
+        appData.gameState.elapsedSeconds = 0
     }
     
     func start2ndHalf() {
         self.appData.gameState.half = .second
-        elapsedSeconds = appData.games[self.gameIndex].halfLength * 60
+        appData.gameState.elapsedSeconds = appData.games[self.gameIndex].halfLength * 60
     }
     
     func undoStat() {
@@ -100,9 +109,41 @@ struct GameDetail: View {
         appData.games[gameIndex].log.removeLast(1)
         appData.gameState.lastStatIndex[appData.gameState.team] = -1
     }
-    
+
+    func updateTimer() {
+        self.appData.gameState.elapsedSeconds += 1
+        let m = self.appData.gameState.elapsedSeconds % 3600 / 60
+        let s = self.appData.gameState.elapsedSeconds % 60
+        self.timerDisplay = String(format: "%01d:%02d", m, s)
+    }
+
 }
 
+//struct ShowTimer: View {
+//    @EnvironmentObject var appData: AppModel
+//    @State var timerDisplay: String = "0:00"
+//
+//    var body: some View {
+//        Text(timerDisplay)
+//            .padding(15)
+//            .frame(width: 180, height: 70)
+//            .font(.system(size: 36, design: .monospaced))
+//            .background(Color.gray)
+//            .opacity(0.4)
+//            .cornerRadius(10)
+//            .onReceive(timer) { _ in
+//                self.updateTimer()
+//        }
+//    }
+//
+//    func updateTimer() {
+//        self.appData.gameState.elapsedSeconds += 1
+//        let m = self.appData.gameState.elapsedSeconds % 3600 / 60
+//        let s = self.appData.gameState.elapsedSeconds % 60
+//        self.timerDisplay = String(format: "%01d:%02d", m, s)
+//    }
+//}
+//
 struct GameDetail_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(["iPhone SE", "iPhone 11"], id:\.self) { deviceName in
@@ -111,34 +152,5 @@ struct GameDetail_Previews: PreviewProvider {
             .previewDisplayName(deviceName)
             .environmentObject(AppModel())
         }
-    }
-}
-
-struct ShowTimer: View {
-    @EnvironmentObject var appData: AppModel
-    @State var timerDisplay: String = "0:00"
-    @State var elapsedSeconds: Int = 0
-
-    var timer = Timer.publish (every: 1, on: .main, in: .common).autoconnect()
-
-    var body: some View {
-        Text(timerDisplay)
-            .padding(15)
-            .frame(width: 180, height: 70)
-            .font(.system(size: 36, design: .monospaced))
-            .background(Color.gray)
-            .opacity(0.4)
-            .cornerRadius(20)
-            .onReceive(timer) { _ in
-                self.updateTimer()
-        }
-    }
-
-    func updateTimer() {
-        self.elapsedSeconds += 1
-        self.appData.gameState.gameClock = self.elapsedSeconds
-        let m = self.elapsedSeconds % 3600 / 60
-        let s = self.elapsedSeconds % 60
-        self.timerDisplay = String(format: "%01d:%02d", m, s)
     }
 }
