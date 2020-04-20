@@ -9,31 +9,31 @@
 import SwiftUI
 
 struct ShowLog: View {
-    var gameIndex: Int
+    var idx: Int
 
     @Environment(\.presentationMode) var presentationMode:Binding<PresentationMode>
     
-    @EnvironmentObject var appData: AppModel
+    @EnvironmentObject var e_: AppModel
 
     var body: some View {
         VStack {
             List {
                 Section(header: Text("Game Log")) {
-                    ForEach(0..<self.appData.games[self.gameIndex].log.count, id: \.self) { i in
+                    ForEach(0..<self.e_.games[self.idx].log.count, id: \.self) { i in
                         HStack {
-                            Text(String(self.appData.games[self.gameIndex].log[i].time) + "'")
+                            Text(String(self.e_.games[self.idx].log[i].time) + "'")
                                 .frame(width: 30, alignment: .trailing)
                             Spacer(minLength: 30)
-                            Text(self.appData.games[self.gameIndex].log[i].stat.rawValue)
+                            Text(self.e_.games[self.idx].log[i].stat.rawValue)
                                 .frame(width: 70, alignment: .center)
                             Spacer(minLength: 30)
-                            Text(self.appData.games[self.gameIndex].log[i].team.rawValue)
+                            Text(self.e_.games[self.idx].log[i].team.rawValue)
                                 .frame(width: 60, alignment: .center)
                             }
                             .padding(.leading, 40)
                             .padding(.trailing, 40)
                             .font(.headline)
-                            .foregroundColor(self.appData.games[self.gameIndex].log[i].team == .us ? _usButtonColor : _themButtonColor)
+                            .foregroundColor(self.e_.games[self.idx].log[i].team == .us ? _usButtonColor : _themButtonColor)
                     }
                 }
             }
@@ -50,7 +50,7 @@ struct ShowLog: View {
 struct ShowLog_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(["iPhone SE", "iPhone 11"], id:\.self) { deviceName in
-            ShowLog(gameIndex: 0)
+            ShowLog(idx: 0)
             .previewDevice(PreviewDevice(rawValue: deviceName))
             .previewDisplayName(deviceName)
             .environmentObject(AppModel())

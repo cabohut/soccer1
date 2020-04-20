@@ -9,8 +9,8 @@
 import SwiftUI
 
 struct ShowStatsButtons: View {
-    var gameIndex: Int
-    @EnvironmentObject var appData: AppModel
+    var idx: Int
+    @EnvironmentObject var e_: AppModel
 
     let labels = StatType.allCases
     // statLabels is 3x3 matrix for the stats buttons layout
@@ -41,7 +41,7 @@ struct ShowStatsButtons: View {
                             .frame(width: self.bW(), height: self.bW())
                             .padding(10)
                             .foregroundColor(.white)
-                            .background(self.appData.gameState.team == .us ? _usButtonColor : _themButtonColor)
+                            .background(self.e_.games[self.idx].currentTeam == .us ? _usButtonColor : _themButtonColor)
                             .cornerRadius(self.bW())
                         }
                     } // ForEach statLabel
@@ -52,9 +52,9 @@ struct ShowStatsButtons: View {
     
     func getStat(type: StatType) -> String {
         // get index for the stat
-        if appData.games.count > 0 {
-            guard let statIndex = appData.games[gameIndex].stats.firstIndex(where: { $0.team.rawValue == appData.gameState.team.rawValue && $0.type == type}) else { return " " }
-            let s = appData.games[gameIndex].stats[statIndex].count > 0 ? String(appData.games[gameIndex].stats[statIndex].count) : " "
+        if e_.games.count > 0 {
+            guard let statIndex = e_.games[idx].stats.firstIndex(where: { $0.team.rawValue == e_.games[idx].currentTeam.rawValue && $0.type == type}) else { return " " }
+            let s = e_.games[idx].stats[statIndex].count > 0 ? String(e_.games[idx].stats[statIndex].count) : " "
             return (s)
         } else {
             return ("")
@@ -63,19 +63,19 @@ struct ShowStatsButtons: View {
     
     func addStat(type: StatType) {
         // get the stat index
-        guard let statIndex = appData.games[gameIndex].stats.firstIndex(where: { $0.team.rawValue == appData.gameState.team.rawValue && $0.type == type}) else { return }
+        guard let statIndex = e_.games[idx].stats.firstIndex(where: { $0.team.rawValue == e_.games[idx].currentTeam.rawValue && $0.type == type}) else { return }
         
         // Save last stat index for Undo
-        self.appData.gameState.lastStatIndex[appData.gameState.team] = statIndex
+        e_.games[idx].lastStatIndex[e_.games[idx].currentTeam] = statIndex
         
         // increment the stat count by 1
-        appData.games[gameIndex].stats[statIndex].count += 1
+        e_.games[idx].stats[statIndex].count += 1
         
         // add stat log
-        appData.games[gameIndex].log +=
-                    [StatLog(time: appData.gameState.elapsedSeconds / 60 + 1,
+        e_.games[idx].log +=
+                    [StatLog(time: e_.games[idx].elapsedSeconds / 60 + 1,
                     stat: type,
-                    team: appData.gameState.team)]
+                    team: e_.games[idx].currentTeam)]
     }
 
     // calculate buttong width
@@ -88,7 +88,7 @@ struct ShowStatsButtons: View {
 struct ShowStatsButtonsView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(["iPhone SE", "iPhone Xs"], id:\.self) { deviceName in
-            ShowStatsButtons(gameIndex: 0)
+            ShowStatsButtons(idx: 0)
             .previewDevice(PreviewDevice(rawValue: deviceName))
             .previewDisplayName(deviceName)
             .environmentObject(AppModel())

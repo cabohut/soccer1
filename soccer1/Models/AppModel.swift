@@ -16,13 +16,12 @@ let _themButtonColor = Color.gray
 let gameData: [Game] = sampleData()
 
 final class AppModel: ObservableObject {
-    @Published var gameState = GameState()
     @Published var games: [Game] = gameData
 }
 
 func sampleData () -> [Game] {
     var sampleGames = [Game]()
-    let numSamples = 30
+    let numSamples = 3
     let numSampleStats = 15
     let opp = ["Poway", "4S", "La Jolla", "Encinitas", "Vista", "Hemet", "Galaxy"]
     let loc = ["Stonebridge", "Jerabek Park", "Community Park", "Spring Canyon", "Jerabek School"]
@@ -30,6 +29,10 @@ func sampleData () -> [Game] {
     for i in 0..<numSamples {
         sampleGames += [Game()]
         sampleGames[i].id = UUID()
+        sampleGames[i].gameState = GameState.ended
+        sampleGames[i].elapsedSeconds = 0
+        sampleGames[i].currentTeam = .us
+        sampleGames[i].currentStat = .fk
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
         sampleGames[i].gameDate = dateFormatter.string(from: Date())
