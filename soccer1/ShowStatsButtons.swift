@@ -52,7 +52,7 @@ struct ShowStatsButtons: View {
     
     func getStat(type: StatType) -> String {
         // get index for the stat
-        if e_.games.count > 0 {
+        if !e_.games.isEmpty {
             guard let statIndex = e_.games[idx].stats.firstIndex(where: { $0.team.rawValue == e_.games[idx].currentTeam.rawValue && $0.type == type}) else { return " " }
             let s = e_.games[idx].stats[statIndex].count > 0 ? String(e_.games[idx].stats[statIndex].count) : " "
             return (s)

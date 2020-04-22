@@ -23,7 +23,7 @@ struct GameDetail: View {
         VStack (spacing: 5) {
             HStack { // Buttons: Start Game and Start 2nd Half
                 if e_.games[idx].gameState == .notStarted {
-                    Button(action: {(self.startGame())}) {
+                    Button(action: {self.startGame() }) {
                         Text("Start Game")
                     }
                 } else { // disabled Start Game button
@@ -31,7 +31,7 @@ struct GameDetail: View {
                 }
                 Spacer()
                 if e_.games[idx].gameState == .firstHalf {
-                    Button(action: {(self.start2ndHalf())}) {
+                    Button(action: {self.start2ndHalf() }) {
                         Text("Start 2nd Half")
                     }
                 } else { // disabled Start Game button
@@ -41,7 +41,12 @@ struct GameDetail: View {
             Spacer()
             
             // Timer
-            ShowTimer(idx: idx)
+            if (e_.games[idx].gameState == .firstHalf || e_.games[idx].gameState == .secondHalf) {
+                ShowTimer(idx: idx)
+            } else {
+                Text("").font(.system(size: 36, design: .monospaced))
+                .frame(width: 150, height: 70)
+            }
             Spacer()
             
             // Stats buttons
@@ -60,8 +65,7 @@ struct GameDetail: View {
             Picker("", selection: $e_.games[idx].currentTeam) {
                 Text("Us").tag(Team.us)
                 Text("Them").tag(Team.them)
-            }   .padding()
-                .pickerStyle(SegmentedPickerStyle())
+            }   .padding().pickerStyle(SegmentedPickerStyle())
             Spacer()
             
             // Summary View
@@ -70,11 +74,11 @@ struct GameDetail: View {
             }) {
                 Text("Show Game Log")
             } .sheet(isPresented: $showLog) {
-                ShowLog(idx: self.idx).environmentObject(self.e_)
+                GameLog(idx: self.idx).environmentObject(self.e_)
                 // .environmentObject is needed becasue e_ is not inhirited
             }
         }   .padding()
-            .navigationBarTitle(e_.games.count > 0 ? e_.games[idx].opponent : "")
+            .navigationBarTitle(e_.games.isEmpty ? "" : e_.games[idx].opponent)
             .onAppear(perform: resetGameState)
     }
     
@@ -112,13 +116,13 @@ struct GameDetail: View {
 struct ShowTimer: View {
     @State var idx: Int
     @EnvironmentObject var e_: AppModel
-    @State var timerDisplay: String = "0:00"
+    @State var timerDisplay: String = ""
     @State var timer = Timer.publish (every: 1, on: .main, in: .common).autoconnect()
 
     var body: some View {
         Text(timerDisplay)
             .font(.system(size: 36, design: .monospaced))
-            .padding(15).frame(width: 180, height: 70)
+            .frame(width: 150, height: 70)
             .background(Color.gray).opacity(0.4).cornerRadius(10)
             .onReceive(timer) { _ in
                 self.updateTimer()

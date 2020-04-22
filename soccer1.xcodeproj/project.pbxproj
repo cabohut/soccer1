@@ -10,7 +10,7 @@
 		927678AD242F2ADC00CB2091 /* GameRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927678AC242F2ADC00CB2091 /* GameRow.swift */; };
 		927678B824330E8D00CB2091 /* GameList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927678B724330E8D00CB2091 /* GameList.swift */; };
 		927CE1992447C30B0013F08A /* soccer1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927CE1982447C30B0013F08A /* soccer1Tests.swift */; };
-		928453F3243D982E00EEF40E /* ShowLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928453F2243D982E00EEF40E /* ShowLog.swift */; };
+		928453F3243D982E00EEF40E /* GameLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928453F2243D982E00EEF40E /* GameLog.swift */; };
 		928BB91B24385F7F00BA4BCC /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928BB91A24385F7F00BA4BCC /* AppModel.swift */; };
 		92B2279E2435567300B91595 /* ShowStatsButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B2279D2435567300B91595 /* ShowStatsButtons.swift */; };
 		92E7FDA62442D775009F4977 /* GameNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E7FDA52442D775009F4977 /* GameNew.swift */; };
@@ -39,7 +39,7 @@
 		927CE1962447C30B0013F08A /* soccer1Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = soccer1Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		927CE1982447C30B0013F08A /* soccer1Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = soccer1Tests.swift; sourceTree = "<group>"; };
 		927CE19A2447C30B0013F08A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		928453F2243D982E00EEF40E /* ShowLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowLog.swift; sourceTree = "<group>"; };
+		928453F2243D982E00EEF40E /* GameLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLog.swift; sourceTree = "<group>"; };
 		928BB91A24385F7F00BA4BCC /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		92B2279D2435567300B91595 /* ShowStatsButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowStatsButtons.swift; sourceTree = "<group>"; };
 		92E7FDA52442D775009F4977 /* GameNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameNew.swift; sourceTree = "<group>"; };
@@ -126,7 +126,7 @@
 				92FEB318242C7BAD005E74F6 /* GameDetail.swift */,
 				92B2279D2435567300B91595 /* ShowStatsButtons.swift */,
 				92E7FDA52442D775009F4977 /* GameNew.swift */,
-				928453F2243D982E00EEF40E /* ShowLog.swift */,
+				928453F2243D982E00EEF40E /* GameLog.swift */,
 				927CE1A02447C3720013F08A /* App */,
 				92FEB31A242C7BAF005E74F6 /* Assets.xcassets */,
 				92FEB31F242C7BAF005E74F6 /* LaunchScreen.storyboard */,
@@ -258,7 +258,7 @@
 				928BB91B24385F7F00BA4BCC /* AppModel.swift in Sources */,
 				927678AD242F2ADC00CB2091 /* GameRow.swift in Sources */,
 				92FEB317242C7BAD005E74F6 /* SceneDelegate.swift in Sources */,
-				928453F3243D982E00EEF40E /* ShowLog.swift in Sources */,
+				928453F3243D982E00EEF40E /* GameLog.swift in Sources */,
 				92FEB319242C7BAD005E74F6 /* GameDetail.swift in Sources */,
 				92B2279E2435567300B91595 /* ShowStatsButtons.swift in Sources */,
 				927678B824330E8D00CB2091 /* GameList.swift in Sources */,

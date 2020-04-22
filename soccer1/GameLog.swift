@@ -1,5 +1,5 @@
 //
-//  ShowLog.swift
+//  GameLog.swift
 //  soccer1
 //
 //  Created by sam on 4/7/20.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct ShowLog: View {
+struct GameLog: View {
     var idx: Int
 
     @Environment(\.presentationMode) var presentationMode:Binding<PresentationMode>
@@ -47,10 +47,10 @@ struct ShowLog: View {
     }
 }
 
-struct ShowLog_Previews: PreviewProvider {
+struct GameLog_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(["iPhone SE", "iPhone 11"], id:\.self) { deviceName in
-            ShowLog(idx: 0)
+            GameLog(idx: 0)
             .previewDevice(PreviewDevice(rawValue: deviceName))
             .previewDisplayName(deviceName)
             .environmentObject(AppModel())

@@ -9,14 +9,14 @@
 import SwiftUI
 
 struct GameList: View {
-    @EnvironmentObject private var appData: AppModel
+    @EnvironmentObject private var e_: AppModel
     @State private var addGame = false
     @State private var editMode = EditMode.inactive
     
     var body: some View {
         NavigationView {
             List {
-                ForEach(appData.games) { game in
+                ForEach(e_.games) { game in
                     NavigationLink(destination: GameDetail(gameID: game.id)) {
                         GameRow(game: game)
                     } .frame(height: 50)
@@ -32,19 +32,19 @@ struct GameList: View {
                     }
                 }
                 .sheet(isPresented: $addGame) {
-                    GameNew().environmentObject(self.appData)
-                    // .environmentObject is needed becasue appData is not inhirited
+                    GameNew().environmentObject(self.e_)
+                    // .environmentObject is needed becasue e_ is not inhirited
                 })
             .environment(\.editMode, $editMode)
         }
     }
     
     private func onDelete(at offsets: IndexSet) {
-        appData.games.remove(atOffsets: offsets)
+        e_.games.remove(atOffsets: offsets)
     }
     
     private func onMove(source: IndexSet, destination: Int) {
-        appData.games.move(fromOffsets: source, toOffset: destination)
+        e_.games.move(fromOffsets: source, toOffset: destination)
     }
 }
 
